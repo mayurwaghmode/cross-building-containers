@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: ubuntuimage
+spec:
+  type: image
+  params:
+    - name: url
+      value: quay.io/mayurwaghmode111/configuredx86
