@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: ubuntugit
+  name: buildahimage
 spec:
   type: git
   params:
     - name: revision
       value: main
     - name: url
-      value: https://github.com/mayurwaghmode/buildah-with-podman-dockerfile.git
+      value: quay.io/buildah/stable
