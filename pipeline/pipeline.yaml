@@ -11,10 +11,6 @@ spec:
         type: git
       - name: builtImage
         type: image
-      - name: buildahImage
-        type: image
-      - name: builtCntImage
-        type: image
   tasks:
     - name: build-docker-image-from-git-source
       taskRef:

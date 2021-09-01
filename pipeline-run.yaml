@@ -3,7 +3,7 @@ kind: PipelineRun
 metadata:
   name: build-docker-image-from-git-source-pipeline-run
 spec:
-  serviceAccountName: dockerhub-service
+  serviceAccountName: quay-service
   pipelineRef:
     name: build-docker-image-from-git-source-pipeline
   params:
@@ -12,13 +12,7 @@ spec:
   resources:
     - name: docker-source
       resourceRef:
-        name: ubuntugit
+        name: buildahgit
     - name: builtImage
       resourceRef:
-        name: ubuntuimage
-    - name: buildahImage
-      resourceRef:
         name: buildahimage
-    - name: builtCntImage
-      resourceRef:
-        name: builtcntimage

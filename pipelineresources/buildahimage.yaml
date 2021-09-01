@@ -3,9 +3,7 @@ kind: PipelineResource
 metadata:
   name: buildahimage
 spec:
-  type: git
+  type: image
   params:
-    - name: revision
-      value: main
     - name: url
-      value: quay.io/buildah/stable
+      value: quay.io/mayurwaghmode111/buildah-with-podman
