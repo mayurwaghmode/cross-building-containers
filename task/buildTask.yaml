@@ -8,18 +8,19 @@ spec:
     - name: cross-build
       image: quay.io/mayurwaghmode111/buildah-with-podman
       script: |
-        #!/usr/bin/env bash
-        podman run --rm --privileged docker.io/multiarch/qemu-user-static --reset -p yes
-        cat > Dockerfile << EOF
+        #!/bin/sh
+        podman run --rm --privileged docker.io/multiarch/qemu-user-static:register --reset
+        buildah bud -t "ppc64le" -<<EOF
+        FROM docker.io/multiarch/qemu-user-static as qemu
         FROM docker.io/ppc64le/ubuntu:20.04
+        COPY --from=qemu /usr/bin/qemu-ppc64le-static /usr/bin
         RUN apt-get update -y
         ENTRYPOINT ["/bin/cat","/proc/cpuinfo"]
         EOF
-        buildah bud -f Dockerfile -t ppc64le .
         buildah from localhost/ppc64le
         buildah commit ppc64le-working-container ppc64lecntwithincnt
-        buildah login -u mwaghmodepersistent -p Mpersistentchess@123 docker.io
-        buildah push ppc64lecntwithincnt mwaghmodepersistent/ppc64lecntwithincnt
+        buildah login -u mayurwaghmode111+test -p X92E11Y7OV17QBLJRJT2URECDG11J5LY67BKFBAG5ASZMMWO9667YHO9LFOKCAGW quay.io
+        buildah push ppc64lecntwithincnt quay.io/mayurwaghmode111/ppc64le-container-built-from-kaniko-buildah
       volumeMounts:
         - name: varlibcontainers
           mountPath: /var/lib/containers
@@ -28,3 +29,5 @@ spec:
   volumes:
     - name: varlibcontainers
       emptyDir: {}
+
+
