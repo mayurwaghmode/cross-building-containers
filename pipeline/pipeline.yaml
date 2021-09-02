@@ -11,6 +11,8 @@ spec:
         type: git
       - name: builtImage
         type: image
+      - name: cross-build-docker-source
+        type: git
   tasks:
     - name: build-docker-image-from-git-source
       taskRef:
@@ -26,6 +28,10 @@ spec:
     - name: build-ppc64le-image
       taskRef:
         name: build-ppc64le-image
+       resources:
+        inputs:
+          - name: cross-build-docker-source
+            resource: cross-build-docker-source
       runAfter:
           - build-docker-image-from-git-source
      
