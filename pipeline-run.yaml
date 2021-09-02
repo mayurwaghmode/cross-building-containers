@@ -5,7 +5,7 @@ metadata:
 spec:
   serviceAccountName: quay-service
   pipelineRef:
-    name: build-docker-image-from-git-source-pipeline
+    name: build-ppc64le-image-from-tekton-pipeline
   params:
     - name: pathToDockerFile
       value: Dockerfile
