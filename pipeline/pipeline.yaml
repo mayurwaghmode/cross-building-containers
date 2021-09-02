@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: build-docker-image-from-git-source-pipeline
+  name: build-ppc64le-image-from-tekton-pipeline
 spec:
   params:
     - name: pathToDockerFile
