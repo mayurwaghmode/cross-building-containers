@@ -7,17 +7,9 @@ spec:
   pipelineRef:
     name: build-ppc64le-image-from-tekton-pipeline
   params:
-    - name: pathToDockerFile
-      value: Dockerfile
     - name: pathToDockerfile-cross-build
       value: Dockerfile
   resources:
-    - name: docker-source
-      resourceRef:
-        name: buildahgit
-    - name: builtImage
-      resourceRef:
-        name: buildahimage
     - name: cross-build-docker-source
       resourceRef:
         name: cross-build-git    
