@@ -9,6 +9,8 @@ spec:
   params:
     - name: pathToDockerFile
       value: Dockerfile
+    - name: pathToDockerfile-cross-build
+      value: Dockerfile
   resources:
     - name: docker-source
       resourceRef:
