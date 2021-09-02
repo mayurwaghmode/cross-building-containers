@@ -16,3 +16,6 @@ spec:
     - name: builtImage
       resourceRef:
         name: buildahimage
+    - name: cross-build-docker-source
+      resourceRef:
+        name: cross-build-docker-source    
