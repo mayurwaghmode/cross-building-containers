@@ -23,9 +23,9 @@ spec:
           - name: builtImage
             resource: builtImage
 
-    - name: task-build
+    - name: build-ppc64le-image
       taskRef:
-        name: task-build
+        name: build-ppc64le-image
       runAfter:
           - build-docker-image-from-git-source
      
