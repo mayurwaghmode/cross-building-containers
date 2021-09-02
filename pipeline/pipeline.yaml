@@ -4,26 +4,11 @@ metadata:
   name: build-ppc64le-image-from-tekton-pipeline
 spec:
   params:
-    - name: pathToDockerFile
     - name: pathToDockerfile-cross-build
   resources:
-      - name: docker-source
-        type: git
-      - name: builtImage
-        type: image
       - name: cross-build-docker-source
         type: git
   tasks:
-    - name: build-docker-image-from-git-source
-      taskRef:
-        name: build-docker-image-from-git-source
-      resources:
-        inputs:
-          - name: docker-source
-            resource: docker-source
-        outputs:
-          - name: builtImage
-            resource: builtImage
     - name: build-ppc64le-image
       taskRef:
         name: build-ppc64le-image
@@ -31,8 +16,6 @@ spec:
         inputs:
           - name: cross-build-docker-source
             resource: cross-build-docker-source
-      runAfter:
-          - build-docker-image-from-git-source
       params:
         - name: IMAGE
           value: ppc64le
