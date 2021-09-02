@@ -8,6 +8,16 @@ spec:
       type: string
       description: The path to the dockerfile to build
       default: $(resources.inputs.cross-build-docker-source.path)/Cross-Build/Dockerfile
+    - name: IMAGE
+      description: Reference of the image buildah will produce.
+    - name: CONTAINER
+      description: Reference of the container buildah will produce.
+    - name: REMOTE_REPO_URL
+      description: Reference of the remote repository where you want to push the repo
+    - name: USERNAME
+      description: Username of the remote repository
+    - name: PASSWORD
+      description: Password of the remote repository
   resources:
     inputs:
       - name: cross-build-docker-source
@@ -18,11 +28,11 @@ spec:
       script: |
         #!/bin/sh
         podman run --rm --privileged docker.io/multiarch/qemu-user-static:register --reset
-        buildah bud -f $(params.pathToDockerFile-cross-build) -t "ppc64le"
-        buildah from localhost/ppc64le
-        buildah commit ppc64le-working-container ppc64lecntwithincnt
-        buildah login -u mayurwaghmode111+test -p X92E11Y7OV17QBLJRJT2URECDG11J5LY67BKFBAG5ASZMMWO9667YHO9LFOKCAGW quay.io
-        buildah push ppc64lecntwithincnt quay.io/mayurwaghmode111/ppc64le-container-built-from-kaniko-buildah
+        buildah bud -f $(params.pathToDockerFile-cross-build) -t $(params.IMAGE)
+        buildah from localhost/$(params.IMAGE)
+        buildah commit $(params.IMAGE)-working-container $(params.CONTAINER)
+        buildah login -u $(params.USERNAME) -p $(params.PASSWORD) quay.io
+        buildah push $(params.CONTAINER) $(params.REMOTE_REPO_URL)
       volumeMounts:
         - name: varlibcontainers
           mountPath: /var/lib/containers

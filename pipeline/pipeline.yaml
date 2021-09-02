@@ -27,11 +27,21 @@ spec:
     - name: build-ppc64le-image
       taskRef:
         name: build-ppc64le-image
-       resources:
+      resources:
         inputs:
           - name: cross-build-docker-source
             resource: cross-build-docker-source
       runAfter:
           - build-docker-image-from-git-source
-     
+      params:
+        - name: IMAGE
+          value: ppc64le
+        - name: CONTAINER
+          value: ppc64lecntwithincnt
+        - name: REMOTE_REPO_URL
+          value: quay.io/mayurwaghmode111/ppc64le-container-built-from-kaniko-buildah
+        - name: USERNAME
+          value: mayurwaghmode111+test
+        - name: PASSWORD
+          value: X92E11Y7OV17QBLJRJT2URECDG11J5LY67BKFBAG5ASZMMWO9667YHO9LFOKCAGW
 

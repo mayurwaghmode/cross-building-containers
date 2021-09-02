@@ -20,4 +20,4 @@ spec:
         name: buildahimage
     - name: cross-build-docker-source
       resourceRef:
-        name: cross-build-docker-source    
+        name: cross-build-git    
