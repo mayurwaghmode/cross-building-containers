@@ -5,8 +5,8 @@ metadata:
 spec:
   params:
     - name: pathToDockerFile
+    - name: pathToDockerfile-cross-build
   resources:
-
       - name: docker-source
         type: git
       - name: builtImage
@@ -24,7 +24,6 @@ spec:
         outputs:
           - name: builtImage
             resource: builtImage
-
     - name: build-ppc64le-image
       taskRef:
         name: build-ppc64le-image
