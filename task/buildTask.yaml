@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: task-build
+  name: build-ppc64le-image
 spec:
   resources:
   steps:
