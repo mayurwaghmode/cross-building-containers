@@ -18,13 +18,7 @@ spec:
       script: |
         #!/bin/sh
         podman run --rm --privileged docker.io/multiarch/qemu-user-static:register --reset
-        buildah bud -t "ppc64le" -<<EOF
-        FROM docker.io/multiarch/qemu-user-static as qemu
-        FROM docker.io/ppc64le/ubuntu:20.04
-        COPY --from=qemu /usr/bin/qemu-ppc64le-static /usr/bin
-        RUN apt-get update -y
-        ENTRYPOINT ["/bin/cat","/proc/cpuinfo"]
-        EOF
+        buildah bud -f $(params.pathToDockerFile-cross-build) -t "ppc64le"
         buildah from localhost/ppc64le
         buildah commit ppc64le-working-container ppc64lecntwithincnt
         buildah login -u mayurwaghmode111+test -p X92E11Y7OV17QBLJRJT2URECDG11J5LY67BKFBAG5ASZMMWO9667YHO9LFOKCAGW quay.io
