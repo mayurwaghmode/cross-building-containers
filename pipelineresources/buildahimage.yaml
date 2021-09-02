@@ -1,9 +1,0 @@
-apiVersion: tekton.dev/v1alpha1
-kind: PipelineResource
-metadata:
-  name: buildahimage
-spec:
-  type: image
-  params:
-    - name: url
-      value: quay.io/mayurwaghmode111/buildah-with-podman
