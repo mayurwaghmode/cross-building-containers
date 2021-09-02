@@ -39,9 +39,9 @@ spec:
         - name: CONTAINER
           value: ppc64lecntwithincnt
         - name: REMOTE_REPO_URL
-          value: quay.io/mayurwaghmode111/ppc64le-container-built-from-kaniko-buildah
+          value: {Your_Remote_Repository_URL}
         - name: USERNAME
-          value: mayurwaghmode111+test
+          value: {Your_Remote_Repository_Username}
         - name: PASSWORD
-          value: X92E11Y7OV17QBLJRJT2URECDG11J5LY67BKFBAG5ASZMMWO9667YHO9LFOKCAGW
+          value: {Your_Remote_Repository_Password}
 
