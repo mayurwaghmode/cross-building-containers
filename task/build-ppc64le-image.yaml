@@ -27,8 +27,6 @@ spec:
       image: quay.io/buildah/stable
       script: |
         #!/bin/sh
-        dnf install podman -y
-        podman run --rm --privileged docker.io/multiarch/qemu-user-static:register --reset
         buildah bud -f $(params.pathToDockerFile-cross-build) -t $(params.IMAGE)
         buildah from localhost/$(params.IMAGE)
         buildah commit $(params.IMAGE)-working-container $(params.CONTAINER)
