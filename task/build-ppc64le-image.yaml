@@ -24,7 +24,7 @@ spec:
         type: git
   steps:
     - name: cross-build
-      description: Base image for cross building ppc64le container
+      #Base image for cross building ppc64le container
       image: quay.io/buildah/stable
       script: |
         #!/bin/sh
@@ -40,7 +40,7 @@ spec:
         - name: varlibcontainers
           mountPath: /var/lib/containers
       securityContext:
-        description: Run pods with privileged security context
+        #Run pods with privileged security context
         privileged: true
   volumes:
     - name: varlibcontainers
