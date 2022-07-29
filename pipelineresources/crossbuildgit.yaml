@@ -6,6 +6,6 @@ spec:
   type: git
   params:
     - name: revision
-      value: main
+      value: tekton-buildah
     - name: url
       value: https://github.com/mayurwaghmode/cross-building-containers.git
