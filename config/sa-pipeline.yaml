@@ -3,4 +3,4 @@ kind: ServiceAccount
 metadata:
   name: quay-service
 secrets:
-  - name: quaycreds
+  - name: image-push-secrets

@@ -14,10 +14,6 @@ spec:
       description: Reference of the container buildah will produce.
     - name: REMOTE_REPO_URL
       description: Reference of the remote repository where you want to push the repo
-    - name: USERNAME
-      description: Username of the remote repository
-    - name: PASSWORD
-      description: Password of the remote repository
   resources:
     inputs:
       - name: cross-build-docker-source
@@ -33,7 +29,7 @@ spec:
         buildah from localhost/$(params.IMAGE)
         buildah commit $(params.IMAGE)-working-container $(params.CONTAINER)
         #Login to the remote Quay repository
-        buildah login -u $(params.USERNAME) -p $(params.PASSWORD) quay.io
+        buildah login -u ${USERNAME} -p ${PASSWORD} quay.io
         #Pushing the image to the Quay repository
         buildah push $(params.CONTAINER) $(params.REMOTE_REPO_URL)
       volumeMounts:
@@ -42,6 +38,18 @@ spec:
       securityContext:
         #Run pods with privileged security context
         privileged: true
+      env:
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: image-push-secrets
+              key: username
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: image-push-secrets
+              key: password
+
   volumes:
     - name: varlibcontainers
       emptyDir: {}

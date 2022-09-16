@@ -22,9 +22,4 @@ spec:
         - name: CONTAINER
           value: ppc64lecntwithincnt
         - name: REMOTE_REPO_URL
-          value: {Your_Remote_Repository_URL}
-        - name: USERNAME
-          value: {Your_Remote_Repository_Username}
-        - name: PASSWORD
-          value: {Your_Remote_Repository_Password}
-
+          value: quay.io/mayurwaghmode111/cross-build-ppc64le
